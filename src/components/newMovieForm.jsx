@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Form from "../common/form";
 import Joi from "joi-browser";
-import { getMovie, updateMovie } from "../services/fakeMovieService";
+import { addNewMovie } from "../services/fakeMovieService";
 
-class MovieForm extends Form {
+class NewMovieForm extends Form {
 	state = {
 		data: {
 			id: "",
-			genre: "",
+			genre: "Romance",
 			rate: 0,
 			stock: 0,
-			liked: "",
+			liked: false,
 			cover_url: "",
 			description: "",
 			rating: 0,
@@ -18,11 +18,6 @@ class MovieForm extends Form {
 		},
 		errors: {}
 	};
-
-	componentDidMount() {
-		const data = getMovie(this.props.match.params.id);
-		this.setState({ data });
-	}
 
 	schema = {
 		id: Joi.string()
@@ -73,15 +68,16 @@ class MovieForm extends Form {
 	];
 
 	doSubmit = () => {
-		updateMovie(this.props.match.params.id, this.state.data);
+		addNewMovie(this.state.data);
 		this.props.history.push("/movies");
 	};
 
 	render() {
 		return (
 			<React.Fragment>
-				<h1>Movie Form {this.props.match.params.id}</h1>
+				<h1>New Movie Form</h1>
 				<div>
+					{this.renderInput("id", "Id")}
 					{this.renderSelect("genre", "Genre", this.genres)}
 					{this.renderInput("rate", "Rate", "number")}
 					{this.renderInput("stock", "Stock", "number")}
@@ -97,4 +93,4 @@ class MovieForm extends Form {
 	}
 }
 
-export default MovieForm;
+export default NewMovieForm;

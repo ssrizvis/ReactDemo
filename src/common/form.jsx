@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
+import Select from "./select";
 
 class Form extends Component {
 	state = {
@@ -39,6 +40,7 @@ class Form extends Component {
 		const error = this.validateProperty(input);
 		const errors = { ...this.state.errors };
 		errors[input.name] = error;
+		if (errors[input.name] && !error) delete errors[input.name];
 		this.setState({ data, errors });
 	};
 
@@ -56,9 +58,28 @@ class Form extends Component {
 		);
 	};
 
+	renderSelect = (name, label, options) => {
+		const { data, errors } = this.state;
+		return (
+			<Select
+				name={name}
+				label={label}
+				selected={data[name]}
+				options={options}
+				value={data[name]}
+				onChange={this.handleOnChange}
+				error={errors[name]}
+			/>
+		);
+	};
+
 	renderSubmitButton = label => {
 		return (
-			<button disabled={this.validate()} className="btn btn-primary">
+			<button
+				disabled={this.validate()}
+				onClick={this.handleSubmit}
+				className="btn btn-primary"
+			>
 				{label}
 			</button>
 		);

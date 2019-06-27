@@ -1,4 +1,4 @@
-const movies = [
+let movies = [
 	{
 		id: "4fede17c312f912796000034",
 		genre: "Comedy",
@@ -177,8 +177,23 @@ const movies = [
 	}
 ];
 
+export function addNewMovie(movie) {
+	const movieInArray = getMovie(movie.id);
+	if (!movieInArray) movies.push(movie);
+}
+
+export function getMovie(id) {
+	return movies.find(mov => mov.id == id);
+}
+
 export function getMovieList() {
 	return movies;
+}
+
+export function updateMovie(id, data) {
+	const movie = getMovie(id);
+	const index = movies.indexOf(movie);
+	movies[index] = data;
 }
 
 export function deleteMovie(movie) {
