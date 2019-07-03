@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const NewNavBar = () => {
-	const navigations = [
-		{ id: 101, name: "movies", label: "Movies" },
-		{ id: 102, name: "rentals", label: "Rentals" },
-		{ id: 103, name: "customers", label: "Customers" }
-	];
+	// const navigations = [
+	// 	{ id: 101, name: "movies", label: "Movies" },
+	// 	{ id: 102, name: "rentals", label: "Rentals" },
+	// 	{ id: 103, name: "customers", label: "Customers" }
+	// ];
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
 			<Link className="navbar-brand" to="/">

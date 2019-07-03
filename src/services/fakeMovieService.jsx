@@ -156,7 +156,7 @@ let movies = [
 		stock: 45,
 		liked: true,
 		cover_url:
-			"http://ia.media-imdb.com/images/M/MV5BMjEzODQ0MzEwMl5BMl5BanBnXkFtZTcwNzI4MTgwNg@@._V1._SX94_SY140_.jpg",
+			"http://movieges/M/MV5BMjEzODQ0MzEwMl5BMl5BanBnXkFtZTcwNzI4MTgwNg@@._V1._SX94_SY140_.jpg",
 		description:
 			"An exiled detective is recruited to solve a series of mysterious deaths that threaten to delay the inauguration of Empress Wu.",
 		rating: 6.6,
@@ -183,7 +183,7 @@ export function addNewMovie(movie) {
 }
 
 export function getMovie(id) {
-	return movies.find(mov => mov.id == id);
+	return movies.find(mov => mov.id === id);
 }
 
 export function getMovieList() {

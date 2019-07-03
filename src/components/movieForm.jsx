@@ -1,16 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import Form from "../common/form";
 import Joi from "joi-browser";
-import { getMovie, updateMovie } from "../services/fakeMovieService";
+import {
+	getMovie,
+	addNewMovie,
+	updateMovie
+} from "../services/fakeMovieService";
 
 class MovieForm extends Form {
 	state = {
 		data: {
-			id: "",
-			genre: "",
+			id: new Date().getTime().toString(),
+			genre: "Romance",
 			rate: 0,
 			stock: 0,
-			liked: "",
+			liked: false,
 			cover_url: "",
 			description: "",
 			rating: 0,
@@ -20,8 +24,10 @@ class MovieForm extends Form {
 	};
 
 	componentDidMount() {
-		const data = getMovie(this.props.match.params.id);
-		this.setState({ data });
+		if (this.props.match.params.id !== "new") {
+			const data = getMovie(this.props.match.params.id);
+			this.setState({ data });
+		}
 	}
 
 	schema = {
@@ -73,7 +79,9 @@ class MovieForm extends Form {
 	];
 
 	doSubmit = () => {
-		updateMovie(this.props.match.params.id, this.state.data);
+		this.props.match.params.id === "new"
+			? addNewMovie(this.state.data)
+			: updateMovie(this.props.match.params.id, this.state.data);
 		this.props.history.push("/movies");
 	};
 
@@ -82,6 +90,12 @@ class MovieForm extends Form {
 			<React.Fragment>
 				<h1>Movie Form {this.props.match.params.id}</h1>
 				<div>
+					{this.renderInput(
+						"id",
+						"Id",
+						"text",
+						this.props.match.params.id !== "new"
+					)}
 					{this.renderSelect("genre", "Genre", this.genres)}
 					{this.renderInput("rate", "Rate", "number")}
 					{this.renderInput("stock", "Stock", "number")}

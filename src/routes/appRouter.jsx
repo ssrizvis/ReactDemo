@@ -8,7 +8,6 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import MovieForm from "../components/movieForm";
 import Login from "../components/login";
 import Register from "../components/register";
-import NewMovieForm from "../components/newMovieForm";
 
 const AppRouter = () => {
 	return (
@@ -17,9 +16,8 @@ const AppRouter = () => {
 			<Switch>
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={Register} />
-				<Route path="/movies/new" component={NewMovieForm} />
-				<Route path="/movies/:id" component={MovieForm} />
-				<Route path="/movies" component={Movies} />
+				<Route path="/movies" exact component={Movies} />
+				<Route path="/movies/:id" exact component={MovieForm} />
 				<Route path="/customers" component={Customers} />
 				<Route path="/rentals" component={Rentals} />
 				<Route path="/not-found" component={PageNotFound} />
