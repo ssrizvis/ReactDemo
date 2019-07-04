@@ -1,7 +1,6 @@
-# ReactTable
+# ReactDemo
 
-A table in react with multiple functions like sorting, filtering, pagination etc.
-
+An app in react with multiple functions like sorting, filtering, pagination etc. on a table, including routing among components, implementing navbar etc. There is implementation of forms as well and login form is there. There is also a file named redux.js which is plain implementation of redux.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
